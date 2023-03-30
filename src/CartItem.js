@@ -1,25 +1,42 @@
 import React from "react";
 
+
 class CartItem extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            price:999,
-            title:'Mobile Phone',
-            qty: 1,
-            img:''
-        }
-    }
+    
     increaseQuantity=()=>{
-       console.log(this.state)
+        // form 1 increase quantity -------------
+        // this.setState({
+        //     qty : this.state.qty+1
+        // })
+
+        // form 2 increase quantity --------------
+        this.setState((preState) => {
+            return {
+                qty : preState.qty+1
+            }
+
+        })
+     
+    }
+
+    decreaseQuantity = ()=>{
+        this.setState((preState)=>{
+            const {qty} = this.state;
+            if(qty===0){
+                return;
+            }
+            return{
+                qty : preState.qty-1
+            }
+        })
+
     }
 
 
 
     render(){
-       
-        const {price , title , qty} = this.state;
-  
+        console.log(this.props)
+        const {price , title , qty} = this.props.product;
         return (
             <div className = "cart-item">
                 <div className="left-block">
@@ -42,8 +59,19 @@ class CartItem extends React.Component{
                         />
 
 
-                        <img alt="decrease" className="action-icons" src="https://cdn-icons-png.flaticon.com/512/992/992683.png"/>
-                        <img alt="delete" className="action-icons" src="https://cdn-icons-png.flaticon.com/512/2907/2907762.png"/>
+                        <img
+                            alt="decrease"
+                            className="action-icons" 
+                            src="https://cdn-icons-png.flaticon.com/512/992/992683.png"
+                            onClick={this.decreaseQuantity.bind(this)}
+                        />
+
+                        <img
+                            alt="delete"
+                            className="action-icons"
+                            src="https://cdn-icons-png.flaticon.com/512/2907/2907762.png"
+                        />
+                        
                     </div>
 
                 </div>
