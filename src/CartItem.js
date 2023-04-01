@@ -1,7 +1,7 @@
 import React from "react";
 
-class CartItem extends React.Component{
-    render(){
+const CartItem =(props)=>{
+    
         console.log(this.props)
         const {price , title , qty} = this.props.product;
         const { product,onDecreaseQuantity,
@@ -45,15 +45,15 @@ class CartItem extends React.Component{
                             src="https://cdn-icons-png.flaticon.com/512/2907/2907762.png"
                             onClick ={()=>onDeleteProduct(product.id)}
                         />
-                        
+
                         
                     </div>
 
                 </div>
             </div>
         )
-    }
 }
+
 
 const styles ={
     image:{
